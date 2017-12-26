@@ -42,6 +42,7 @@ static ssize_t mydriver_write(struct file *, const char *, size_t, loff_t *);
 
 //for character device testing
 static struct file_operations fops = {
+    .owner = THIS_MODULE,
     .open = mydriver_open,
     .read = mydriver_read,
     .write = mydriver_write,
