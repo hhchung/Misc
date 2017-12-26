@@ -18,10 +18,14 @@
 volatile int mlock;
 int var;
 void lock(void){
+#ifdef LOCK
     while(__sync_lock_test_and_set(&mlock, 1)) while(mlock);
+#endif
 }
 void unlock(void){
+#ifdef LOCK
     __sync_lock_release(&mlock);
+#endif
 }
 
 void* worker(void *arg){
